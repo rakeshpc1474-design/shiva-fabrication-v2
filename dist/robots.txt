@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shivafabrication.co.in/sitemap.xml

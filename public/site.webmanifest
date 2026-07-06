@@ -1,0 +1,9 @@
+{
+  "name": "Shiva Fabrication",
+  "short_name": "ShivaFab",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f4c5c",
+  "theme_color": "#0f4c5c",
+  "icons": []
+}
