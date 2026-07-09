@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { company, services } from '../data/content';
 import { scrollToQuoteForm } from '../utils/quote';
+import fullLogo from "../assets/images/full-Logo.png";
 
 export default function Footer() {
   return (
@@ -8,7 +9,11 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <div className="flex w-full max-w-[220px] items-center justify-center lg:justify-start">
-            <img src="/src/assets/images/full-Logo.png" alt="Shiva Fabrication logo" className="w-[180px] object-contain" />
+            <img
+  src={fullLogo}
+  alt="Shiva Fabrication logo"
+  className="w-[180px] object-contain"
+/>
           </div>
           <p className="mt-5 max-w-md text-sm leading-7 text-[#AEB8C5]">Premium steel fabrication and structural engineering crafted for industrial durability, speed and long-term performance.</p>
           <div className="mt-6 space-y-2 text-sm text-[#AEB8C5]">

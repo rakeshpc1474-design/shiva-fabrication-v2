@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import { useState } from 'react';
 import { company } from '../data/content';
 import { QUOTE_SECTION_ID } from '../utils/quote';
@@ -79,43 +78,35 @@ export default function QuoteForm() {
     setIsSubmitting(true);
     setStatus({ type: 'idle', message: '' });
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setIsSubmitting(false);
-      setStatus({ type: 'error', message: 'Quote submission is not configured yet. Please contact us directly at ' + company.email + '.' });
-      return;
-    }
-
-    const templateParams = {
-      from_name: formData.contactPerson,
-      company_name: formData.companyName,
-      contact_person: formData.contactPerson,
-      mobile_number: formData.mobile,
-      email_address: formData.email,
-      project_location: formData.projectLocation,
-      project_type: formData.projectType,
-      approximate_area: formData.area || 'Not specified',
-      estimated_budget: formData.budget || 'Not specified',
-      project_description: formData.projectDescription,
-      drawing_upload: formData.drawingFileName || 'Not provided',
-      preferred_contact_method: formData.contactMethod,
-      to_email: company.email,
-      reply_to: formData.email,
-    };
+    
 
     try {
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const response = await fetch(
+  "https://script.google.com/macros/s/AKfycbyr-c0xIuRTNIMvhLWnPdefHJMRaZGfSlI9MIJlFJU9Yt0DQt_t6WhbKPGJvkQB1vXLhQ/exec",
+  {
+    method: "POST",
+    body: JSON.stringify(formData),
+  }
+);
+
+const result = await response.json();
+
+if (!result.success) {
+  throw new Error(result.error || "Submission failed");
+}
       setStatus({ type: 'success', message: 'Thank you. Our team will contact you shortly.' });
       setFormData(initialState);
       setSelectedFile(null);
     } catch (error) {
-      setStatus({ type: 'error', message: 'We could not submit your request right now. Please try again or call us directly.' });
-    } finally {
-      setIsSubmitting(false);
-    }
+  console.error(error);
+
+  setStatus({
+    type: 'error',
+    message: 'We could not submit your request right now. Please try again or call us directly.'
+  });
+} finally {
+  setIsSubmitting(false);
+}
   };
 
   return (

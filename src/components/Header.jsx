@@ -18,8 +18,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#2D3B4D] bg-[#0B1118]/95 backdrop-blur-xl shadow-lg">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#2D3B4D] bg-[#0B1118]/95 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
         {/* Logo */}
         <Link
@@ -27,11 +27,17 @@ export default function Header() {
           className="flex items-center"
           onClick={() => setOpen(false)}
         >
-          <img
-            src={navbarLogo}
-            alt="Shiva Enterprise"
-            className="h-10 lg:h-12 w-auto object-contain"
-          />
+          <Link
+  to="/"
+  className="flex items-center"
+  onClick={() => setOpen(false)}
+>
+  <img
+    src={navbarLogo}
+    alt="Shiva Fabrication"
+    className="h-10 lg:h-12 w-auto object-contain"
+  />
+</Link>
         </Link>
 
         {/* Desktop Navigation */}
