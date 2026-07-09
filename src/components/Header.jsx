@@ -30,7 +30,7 @@ export default function Header() {
           <img
             src={navbarLogo}
             alt="Shiva Enterprise"
-            className="h-14 w-auto object-contain"
+            className="h-10 lg:h-12 w-auto object-contain"
           />
         </Link>
 

@@ -21,7 +21,9 @@ function App() {
       <LoadingScreen />
       <ScrollToTop />
       <Header />
-      <motion.main initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
+      <motion.main
+  className="pt-16"
+  initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
